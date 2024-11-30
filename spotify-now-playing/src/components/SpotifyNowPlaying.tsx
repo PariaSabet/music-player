@@ -123,7 +123,7 @@ export function SpotifyNowPlaying() {
       <div className="mb-4 text-green-500 text-sm">
         [{trackData.isPlaying ? 'NOW PLAYING' : 'LAST PLAYED'}]
       </div>
-      <div className="space-y-2">
+      <div className="space-y-2 flex flex-col items-center">
         {trackData.albumImageUrl && (
           <img
             src={trackData.albumImageUrl}
