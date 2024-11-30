@@ -110,32 +110,46 @@ export function SpotifyNowPlaying() {
 
   if (!trackData) {
     return (
-      <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 shadow-lg max-w-[300px]">
-        <div className="mb-2 text-gray-300 text-sm font-medium">
-          🎵 I am listening to...
+      <div className="bg-black border-2 border-green-500 p-6 max-w-[300px] font-mono">
+        <div className="mb-2 text-green-500 text-sm">
+          [ NO SIGNAL ]
         </div>
-        <p className="text-gray-300">Not playing</p>
       </div>
     )
   }
 
   return (
-    <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 shadow-lg max-w-[300px]">
-      <div className="mb-2 text-gray-300 text-sm font-medium">
-        🎵{' '}
-        {trackData.isPlaying ? 'I am listening to...' : 'I last listened to...'}
+    <div className="bg-black border-2 border-green-500 p-6 max-w-[300px] font-mono">
+      <div className="mb-4 text-green-500 text-sm">
+        [{trackData.isPlaying ? 'NOW PLAYING' : 'LAST PLAYED'}]
       </div>
-      <div className="flex items-center gap-3">
+      <div className="space-y-2">
         {trackData.albumImageUrl && (
           <img
             src={trackData.albumImageUrl}
             alt={`${trackData.album} cover`}
-            className="w-12 h-12 rounded"
+            className="w-16 h-16 border border-green-500 brightness-50 contrast-125"
           />
         )}
-        <div className="overflow-hidden">
-          <p className="text-white font-medium truncate">{trackData.name}</p>
-          <p className="text-gray-300 text-sm truncate">{trackData.artist}</p>
+        <div className="space-y-1">
+          <p className="text-green-500 font-bold tracking-tight overflow-hidden">
+            {'>>'} {trackData.name}
+          </p>
+          <p className="text-green-400 text-sm overflow-hidden">
+            {trackData.artist}
+          </p>
+          <div className="mt-2 h-2 bg-green-900/30">
+            <div 
+              className={`h-full bg-green-500 ${
+                trackData.isPlaying 
+                  ? 'animate-[progress_3s_ease-in-out_infinite]' 
+                  : 'w-full'
+              }`}
+            ></div>
+          </div>
+          <div className="text-green-500 text-xs mt-1">
+            {trackData.isPlaying ? '>>>' : '|||'}
+          </div>
         </div>
       </div>
     </div>
